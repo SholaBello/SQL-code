@@ -1,0 +1,88 @@
+# SQL-code
+Example of utilized SQL code. 
+CREATE TABLE players (
+  username TEXT,
+  kd INTEGER,
+  spm INTEGER,
+  win_loss_ratio INTEGER,
+  time_played_days INTEGER
+);
+
+INSERT INTO players (username, kd, spm, win_loss_ratio, time_played_days)
+VALUES
+  ('player1', 1.5, 250, 0.7, 10),
+  ('player2', 2.0, 300, 0.8, 20),
+  ('player3', 1.2, 200, 0.6, 15),
+  ('player4', 1.7, 275, 0.75, 25),
+  ('player5', 1.9, 290, 0.8, 30);  
+  ('player6', 1.3, 220, 0.5, 12),
+  ('player7', 1.8, 280, 0.7, 18),
+  ('player8', 2.3, 320, 0.85, 35),
+  ('player9', 1.1, 180, 0.4, 8),
+  ('player10', 2.1, 310, 0.75, 28),
+  ('player11', 1.6, 240, 0.6, 14),
+  ('player12', 1.4, 230, 0.45, 10),
+  ('player13', 2.2, 305, 0.9, 32),
+  ('player14', 1.8, 275, 0.65, 20),
+  ('player15', 1.2, 190, 0.35, 5),
+  ('player16', 1.5, 260, 0.55, 16),
+  ('player17', 1.9, 295, 0.75, 22),
+  ('player18', 2.4, 330, 0.95, 40),
+  ('player19', 1.1, 170, 0.3, 7),
+  ('player20', 2.0, 300, 0.7, 25),
+  ('player21', 1.7, 255, 0.5, 13),
+  ('player22', 1.3, 215, 0.4, 9),
+  ('player23', 2.1, 315, 0.8, 30),
+  ('player24', 1.8, 270, 0.6, 19),
+  ('player25', 1.2, 195, 0.25, 4),
+  ('player26', 1.6, 245, 0.55, 15),
+  ('player27', 1.9, 290, 0.7, 24),
+  ('player28', 2.5, 340, 1.0, 50),
+  ('player29', 1.0, 160, 0.2, 6),
+  ('player30', 2.2, 305, 0.85, 33); 
+  
+ ===================================================================================================================================================================== 
+  What is the KD for player30?
+SELECT kd FROM players  
+  WHERE username = 'player30'; 
+  
+  What is the highest KD among all players?
+  SELECT MAX(kd) AS highest_kd FROM players;  
+  
+  What is the average SPM (score per minute) for all players?
+ SELECT AVG(spm) AS avg_spm FROM players;     
+ 
+ Find me everyone with a KD lower than 1.8.
+ SELECT * FROM players WHERE kd < 1.8; 
+ 
+ What is the total time played by all players in hours?
+ SELECT SUM(time_played_days * 24)  
+  AS total_time_played_hours 
+  FROM players;   
+  
+ Who has the highest win-loss ratio among all players? 
+ SELECT username, win_loss_ratio 
+  FROM players WHERE win_loss_ratio = 
+(SELECT MAX(win_loss_ratio) FROM players); 
+
+What is the average time played in days for players with a win-loss ratio higher than 0.7?
+SELECT AVG(time_played_days) AS avg_time_played  
+FROM players  
+WHERE win_loss_ratio > 0.7;
+ 
+ How many players have a KD higher than 2.0?
+ SELECT COUNT(*) as num_players 
+  FROM players 
+  WHERE kd > 2.0; 
+  
+ Who has the highest SPM among players with a time played of at least 20 days? 
+  SELECT username, spm 
+  FROM players 
+    WHERE time_played_days >= 20 
+ ORDER BY spm DESC LIMIT 1;
+ 
+ What is the average win-loss ratio for players with a time played of at least 15 days?
+ SELECT AVG(win_loss_ratio) AS avg_win_loss_ratio FROM players 
+ WHERE time_played_days >= 15;
+  
+  
